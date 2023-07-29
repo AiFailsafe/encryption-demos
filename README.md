@@ -4,7 +4,7 @@ Some of the more advanced encryption methods in this repository have been dulled
 
 Some of the encryption methods shown here are:
 + [Caesar Cipher](caeser-cipher.html)
-+ AES (Advanced Encryption Standard)
++ [AES (Advanced Encryption Standard)](aes-encryption)
 
 ### These encryption methods shown here are for educational purposes only and should _not_ be used in any real world situations… ever! ###
 
