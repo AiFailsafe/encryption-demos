@@ -6,7 +6,7 @@ Some of the encryption methods shown here are:
 + Caesar Cipher
 + AES (Advanced Encryption Standard)
 
-** These encryption methods shown here are for educational purposes only and should _not_ be used in any real world situations… ever! **
+### These encryption methods shown here are for educational purposes only and should _not_ be used in any real world situations… ever! ###
 
 
 
