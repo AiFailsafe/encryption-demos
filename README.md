@@ -1,2 +1,2 @@
-# encryption-demos
+# Encryption Demos
 For learning encryption techniques
