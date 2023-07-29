@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AES Encryption Visualization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+
+    .aes-step {
+      display: flex;
+      align-items: center;
+    }
+
+    .state {
+      display: grid;
+      grid-template-columns: repeat(4, 50px);
+      gap: 5px;
+      margin: 5px;
+    }
+
+    .byte {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+      font-weight: bold;
+    }
+
+    .key {
+      margin: 5px;
+      padding: 5px;
+      border: 1px solid black;
+      display: inline-block;
+    }
+
+    .round-num {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>AES Encryption Visualization</h1>
+  <p>
+    AES (Advanced Encryption Standard) is a widely used symmetric encryption algorithm known for its strong security and
+    efficiency. It operates on fixed-length blocks of data, where the block size for AES-128 is 128 bits (16 bytes). The
+    encryption process consists of multiple rounds, with each round performing a series of well-defined transformations
+    on the data. 
+    <br>
+    <br>In this visualization, we focus on the first round (Round 1) of AES-128 encryption, where we illustrate
+    each step with a fixed key for simplicity. Keep in mind that this demonstration uses a highly simplified version of
+    AES and a fixed key, which is NOT suitable for real-world encryption. 
+    
+    For actual security, always use well-established
+    cryptographic libraries and best practices to protect your sensitive data.
+  </p>
+
+  <h2>Enter Text to Encrypt</h2>
+  <textarea id="inputText" placeholder="Enter some word/s here"></textarea>
+
+  <h2>Visualization (Round 1)</h2>
+  <table id="visualization">
+    <tr>
+      <th>Step</th>
+      <th>State Before</th>
+      <th>State After</th>
+      <th>Description</th>
+    </tr>
+  </table>
+
+  <script>
+    // Declare the state variable outside the function
+    let state = [];
+
+    // Simplified AES Encryption/Decryption (NOT SECURE)
+    function visualizeRound() {
+      const inputText = document.getElementById("inputText").value;
+      const key = "mySecretKey"; // Fixed key (NOT SECURE for real-world use)
+
+      state = inputText.split('').map((c) => c.charCodeAt(0));
+      const visualizationTable = document.getElementById("visualization");
+      visualizationTable.innerHTML = "";
+
+      const steps = [
+        {
+          label: "Initial State",
+          description: "The initial state before any transformations.",
+          stateBefore: [...state],
+          stateAfter: [...state]
+        },
+        {
+          label: "Step 1: SubBytes",
+          description: "Each byte in the state is replaced using a substitution box (S-box).",
+          stateBefore: [...state],
+          stateAfter: state.map((byte) => byte + 1) // Replace with actual SubBytes transformation
+        },
+        {
+          label: "Step 2: ShiftRows",
+          description: "The rows of the state are cyclically shifted.",
+          stateBefore: [...state],
+          stateAfter: state.map((byte) => byte + 2) // Replace with actual ShiftRows transformation
+        },
+        {
+          label: "Step 3: MixColumns",
+          description: "The columns of the state are mixed together.",
+          stateBefore: [...state],
+          stateAfter: state.map((byte) => byte + 3) // Replace with actual MixColumns transformation
+        },
+        {
+          label: "Step 4: AddRoundKey",
+          description: "Each byte of the state is combined with the corresponding byte of the round key.",
+          stateBefore: [...state],
+          stateAfter: state.map((byte, i) => byte + key.charCodeAt(i)) // Replace with actual AddRoundKey transformation
+        }
+      ];
+
+      steps.forEach((step) => {
+        const row = visualizationTable.insertRow();
+
+        const stepCell = row.insertCell();
+        stepCell.textContent = step.label;
+
+        const stateBeforeCell = row.insertCell();
+        stateBeforeCell.textContent = step.stateBefore.join(", ");
+
+        const stateAfterCell = row.insertCell();
+        stateAfterCell.textContent = step.stateAfter.join(", ");
+
+        const descriptionCell = row.insertCell();
+        descriptionCell.textContent = step.description;
+      });
+    }
+  </script>
+  <br>
+  <button onclick="visualizeRound()">Visualize Round 1</button>
+</body>
+
+</html>
