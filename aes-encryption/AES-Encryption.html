@@ -155,6 +155,32 @@
 
         const descriptionCell = row.insertCell();
         descriptionCell.textContent = step.description;
+        if (step.label === "Step 1: SubBytes") {
+          const descriptionLink = document.createElement("a");
+          descriptionLink.href = "aes_subbytes_display.html"; // Link to the detailed page for SubBytes
+          descriptionLink.textContent = step.description;
+          descriptionCell.appendChild(descriptionLink);
+        }
+        if (step.label === "Step 2: ShiftRows") {
+          const descriptionLink = document.createElement("a");
+          descriptionLink.href = "aes_shiftrows_display.html"; // Link to the detailed page for ShiftRows
+          descriptionLink.textContent = step.description;
+          descriptionCell.appendChild(descriptionLink);
+        }
+        if (step.label === "Step 3: MixColumns") {
+          const descriptionLink = document.createElement("a");
+          descriptionLink.href = "aes_mixcolumns_display.html"; // Link to the detailed page for MixColumns
+          descriptionLink.textContent = step.description;
+          descriptionCell.appendChild(descriptionLink);
+        }
+        if (step.label === "Step 4: AddRoundKey") {
+          const descriptionLink = document.createElement("a");
+          descriptionLink.href = "aes_addroundkey_display.html"; // Link to the detailed page for AddRoundKey
+          descriptionLink.textContent = step.description;
+          descriptionCell.appendChild(descriptionLink);
+        } else {
+          descriptionCell.textContent = step.description;
+        }
       });
     }
   </script>
