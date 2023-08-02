@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AES ShiftRows Example</title>
+</head>
+<body>
+  <h1>AES ShiftRows Example</h1>
+  <p>
+    The "ShiftRows" step is an important component of the AES (Advanced Encryption Standard) encryption process.
+    In this step, we operate on the State array, which is a 4x4 matrix that holds the plaintext data during the encryption process.
+  </p>
+
+  <h2>Original State:</h2>
+  <p>
+    The original State array is as follows:
+  </p>
+  <table border="1">
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+      <td>16</td>
+    </tr>
+  </table>
+
+  <h2>After ShiftRows:</h2>
+  <p>
+    In the "ShiftRows" step, we shift the rows of the State array by a certain number of bytes to the left.
+    The number of bytes to shift each row depends on the row index.
+  </p>
+  <p>
+    Here's how the "ShiftRows" step works:
+  </p>
+  <ul>
+    <li>The first row (Row 0) remains unchanged.</li>
+    <li>The second row (Row 1) is shifted one byte to the left.</li>
+    <li>The third row (Row 2) is shifted two bytes to the left.</li>
+    <li>The fourth row (Row 3) is shifted three bytes to the left.</li>
+  </ul>
+
+  <p>
+    Visually, the "ShiftRows" step looks like this:
+  </p>
+  <table border="1">
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>12</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+  </table>
+
+  <p>
+    This step is crucial for providing diffusion in the cipher, ensuring that a small change in the input data results in a significant change in the output ciphertext. It is one of the key properties that make AES secure.
+  </p>
+
+  <p>
+    The "ShiftRows" step is reversible, meaning that it has a counterpart in the decryption process called "InvShiftRows," where the rows are shifted back to their original positions. This way, during decryption, the original plaintext can be recovered from the ciphertext.
+  </p>
+</body>
+</html>
