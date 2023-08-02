@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MixColumns in AES Encryption</title>
+</head>
+<body>
+    <h1>MixColumns in AES Encryption</h1>
+    <p>
+        In AES (Advanced Encryption Standard) encryption, MixColumns is one of the four main operations applied in the cipher's round. It operates on the columns of the state matrix, which is a 4x4 array of bytes.
+        MixColumns is a transformation that provides diffusion and confusion, making AES more secure.
+    </p>
+    <p>
+        The MixColumns operation multiplies each column of the state matrix by a fixed polynomial and reduces the result modulo a fixed polynomial. The multiplication is done in a special way using a Galois field, denoted by GF(2^8).
+    </p>
+    <p>
+        Let's see a simple demonstration of the MixColumns operation using JavaScript.
+    </p>
+
+    <script>
+        // MixColumns operation for AES (Multiplication in GF(2^8))
+        function mixColumns(column) {
+            const m02 = 0x02;
+            const m03 = 0x03;
+            const result = new Array(4);
+
+            for (let i = 0; i < 4; i++) {
+                const b0 = column[i];
+                const b1 = column[(i + 1) % 4];
+                const b2 = column[(i + 2) % 4];
+                const b3 = column[(i + 3) % 4];
+
+                result[i] = (m02 * b0) ^ (m03 * b1) ^ b2 ^ b3;
+            }
+
+            return result;
+        }
+
+        // Example: MixColumns operation on a single column
+        const inputColumn = [0xdb, 0x13, 0x53, 0x45];
+        const mixedColumn = mixColumns(inputColumn);
+
+        // Display results
+        document.write("<h2>Example:</h2>");
+        document.write("<p><strong>Input Column:</strong> " + inputColumn.join(", ") + "</p>");
+        document.write("<p><strong>Mixed Column:</strong> " + mixedColumn.join(", ") + "</p>");
+    </script>
+</body>
+</html>
